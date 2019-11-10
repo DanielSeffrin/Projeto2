@@ -82,7 +82,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao(desc);
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         //
@@ -214,7 +214,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q1");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -224,7 +224,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q2");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -234,7 +234,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q3");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -244,7 +244,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q4");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -254,7 +254,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q5");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -264,7 +264,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q6");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -274,7 +274,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q7");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -284,7 +284,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q8");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -294,7 +294,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q9");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
@@ -304,7 +304,7 @@ public class Pesquisa implements Serializable {
         q.setDescricao("Q10");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
-        q.setAltC("Médio");
+        q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
