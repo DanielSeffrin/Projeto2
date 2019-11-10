@@ -15,8 +15,8 @@ public class Pesquisa implements Serializable {
         System.out.println("==============================");
         System.out.println("MENU");
         System.out.println("1 - Cadastrar Perguntas");
-        System.out.println("/*2 - Alterar Perguntas*/");
-        System.out.println("/*3 - Apagar Perguntas*/");
+        System.out.println("2 - Alterar Perguntas");
+        System.out.println("3 - Apagar Perguntas");
         System.out.println("4 - Listar Peguntas");
         System.out.println("5 - Iniciar Pesquisa");
         System.out.println("/*6 - Percentual de Resposta*/");
@@ -64,49 +64,83 @@ public class Pesquisa implements Serializable {
 
     public static void cadastrarPerguntas() {
         Questoes q = new Questoes();
+        System.out.println("");
         System.out.println("Cadastramento de Perguntas");
         System.out.println("");
         System.out.print("Digite o número da questão: ");
         int n = scanner.nextInt();
         scanner.nextLine();
+        for (int z = 0; z < pesquisa.size(); z++) {
+            if (pesquisa.get(z).getNumero() == n) {
+                System.out.println("Número já utilizado!");
+                menu();
+            }
+        }
         q.setNumero(n);
         System.out.print("Digite a descrição: ");
         String desc = scanner.nextLine();
         q.setDescricao(desc);
-        System.out.print("Digite a Alternativa A: ");
-        String a = scanner.nextLine();
-        q.setAltA(a);
-        System.out.print("Digite a Alternativa B: ");
-        String b = scanner.nextLine();
-        q.setAltB(b);
-        System.out.print("Digite a Alternativa C: ");
-        String c = scanner.nextLine();
-        q.setAltC(c);
-        System.out.print("Digite a Alternativa D: ");
-        String d = scanner.nextLine();
-        q.setAltD(d);
-        System.out.print("Digite a Alternativa E: ");
-        String e = scanner.nextLine();
-        q.setAltE(e);
+        q.setAltA("Péssimo");
+        q.setAltB("Ruim");
+        q.setAltC("Médio");
+        q.setAltD("Bom");
+        q.setAltE("Ótimo");
         //
         Pesquisa.pesquisa.add(q);
+        //
+        System.out.println("Cadastrado com sucesso!");
+        System.out.println("");
         //
         menu();
     }
 
     public static void alterarPerguntas() {
-        System.out.println("Alterar");
+        Questoes q = new Questoes();
+        System.out.println("");
+        System.out.println("Alterar Perguntas");
+        System.out.println("");
+        System.out.print("Digite o número da questão para alterar: ");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        for (int z = 0; z < pesquisa.size(); z++) {
+            if (pesquisa.get(z).getNumero() == num) {
+                System.out.print("Digite a nova descrição: ");
+                String novadesc = scanner.nextLine();
+                pesquisa.get(z).setDescricao(novadesc);
+                System.out.println("Alterado com sucesso!");
+                System.out.println("");
+                menu();
+            }
+        }
+        System.out.println("Questão inválida");
+        System.out.println("");
         //
         menu();
     }
 
     public static void apagarPerguntas() {
-        System.out.println("Apagar");
+        System.out.println("");
+        System.out.println("Apagar Perguntas");
+        System.out.println("");
+        System.out.print("Digite o número da questão para apagar: ");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        for (int z = 0; z < pesquisa.size(); z++) {
+            if (pesquisa.get(z).getNumero() == num) {
+                pesquisa.remove(z);
+                System.out.println("Apagado com sucesso!");
+                System.out.println("");
+                menu();
+            }
+        }
+        System.out.println("Questão inválida!");
+        System.out.println("");
         //
         menu();
     }
 
     public static void listarPerguntas() {
+        System.out.println("");
         System.out.println("Listagem das Perguntas");
         System.out.println("");
         for (int i = 0; i < pesquisa.size(); i++) {
@@ -135,6 +169,7 @@ public class Pesquisa implements Serializable {
     }
 
     public static void iniciarPesquisa() {
+        System.out.println("");
         System.out.print("Digite o número de entrevistados: ");
         int qtdEnt = scanner.nextInt();
         scanner.nextLine();
@@ -143,6 +178,7 @@ public class Pesquisa implements Serializable {
             qtdEnt = scanner.nextInt();
             scanner.nextLine();
         }
+        System.out.println("");
         System.out.println("Pesquisa");
         System.out.println("");
         //
