@@ -16,15 +16,16 @@ public class Pesquisa implements Serializable {
         System.out.println("MENU");
         System.out.println("1 - Cadastrar Perguntas");
         System.out.println("/*2 - Alterar Perguntas*/");
-        System.out.println("3 - Listar Peguntas");
-        System.out.println("4 - Iniciar Pesquisa");
-        System.out.println("/*5 - Percentual de Resposta*/");
-        System.out.println("/*6 - Listar Gabarito*/");
+        System.out.println("/*3 - Apagar Perguntas*/");
+        System.out.println("4 - Listar Peguntas");
+        System.out.println("5 - Iniciar Pesquisa");
+        System.out.println("/*6 - Percentual de Resposta*/");
         System.out.println("sair - Sair do Sistema");
         System.out.println("==============================");
         System.out.print("Digite a opção: ");
-
+        //
         opcao = leitorTeclado.nextLine();
+        //
         while (1 == 1) {
             switch (opcao) {
                 case "sair":
@@ -36,16 +37,16 @@ public class Pesquisa implements Serializable {
                     alterarPerguntas();
                     break;
                 case "3":
-                    listarPerguntas();
+                    apagarPerguntas();
                     break;
                 case "4":
-                    iniciarPesquisa();
+                    listarPerguntas();
                     break;
                 case "5":
-                    percRespostas();
+                    iniciarPesquisa();
                     break;
                 case "6":
-                    listarGabarito();
+                    percRespostas();
                     break;
                 default:
                     System.out.print("Digite uma opção válida: ");
@@ -67,6 +68,7 @@ public class Pesquisa implements Serializable {
         System.out.println("");
         System.out.print("Digite o número da questão: ");
         int n = scanner.nextInt();
+        scanner.nextLine();
         q.setNumero(n);
         System.out.print("Digite a descrição: ");
         String desc = scanner.nextLine();
@@ -98,6 +100,12 @@ public class Pesquisa implements Serializable {
         menu();
     }
 
+    public static void apagarPerguntas() {
+        System.out.println("Apagar");
+        //
+        menu();
+    }
+
     public static void listarPerguntas() {
         System.out.println("Listagem das Perguntas");
         System.out.println("");
@@ -118,6 +126,10 @@ public class Pesquisa implements Serializable {
         Questoes q = new Questoes();
         System.out.print("Digite a resposta: ");
         String resp = scanner.nextLine();
+        while (!resp.equals("a") && !resp.equals("b") && !resp.equals("c") && (!resp.equals("d")) && !resp.equals("e")) {
+            System.out.print("Resposta inválida, digite novamente: ");
+            resp = scanner.nextLine();
+        }
         q.setResposta(resp);
         System.out.println("");
     }
@@ -125,12 +137,19 @@ public class Pesquisa implements Serializable {
     public static void iniciarPesquisa() {
         System.out.print("Digite o número de entrevistados: ");
         int qtdEnt = scanner.nextInt();
+        scanner.nextLine();
+        while (qtdEnt <= 0) {
+            System.out.print("Quantidade inválida, digite novamente: ");
+            qtdEnt = scanner.nextInt();
+            scanner.nextLine();
+        }
         System.out.println("Pesquisa");
         System.out.println("");
         //
-        for (int x = 0; x < qtdEnt; x++) {
-            System.out.print("Digite o nome do entrevistado: ");
+        for (int x = 1; x <= qtdEnt; x++) {
+            System.out.print("Digite o nome do entrevistado " + x + ": ");
             String nome = scanner.nextLine();
+            System.out.println("");
             for (int i = 0; i < pesquisa.size(); i++) {
                 System.out.println("Entrevistado " + nome);
                 System.out.println("Questão número: " + Pesquisa.pesquisa.get(i).getNumero());
@@ -149,12 +168,6 @@ public class Pesquisa implements Serializable {
 
     public static void percRespostas() {
         System.out.println("Percentual das Respostas");
-        //
-        menu();
-    }
-
-    public static void listarGabarito() {
-        System.out.println("Gabarito");
         //
         menu();
     }
@@ -259,7 +272,6 @@ public class Pesquisa implements Serializable {
         q.setAltD("Bom");
         q.setAltE("Ótimo");
         Pesquisa.pesquisa.add(q);
-        //
     }
 
 }

@@ -2,7 +2,7 @@ package projeto2;
 
 import java.io.Serializable;
 
-public class Questoes implements Serializable{
+public class Questoes implements Serializable {
 
     private int numero;
     private String descricao;
@@ -18,9 +18,6 @@ public class Questoes implements Serializable{
     }
 
     public void setNumero(int numero) {
-        while (numero == 0) {
-            System.out.println("Número já existe!");
-        }
         this.numero = numero;
     }
 
@@ -29,9 +26,6 @@ public class Questoes implements Serializable{
     }
 
     public void setDescricao(String descricao) {
-        while (descricao.length() == 0) {
-            System.out.println("Descrição não pode ser vazia!");
-        }
         this.descricao = descricao;
     }
 
@@ -40,9 +34,6 @@ public class Questoes implements Serializable{
     }
 
     public void setAltA(String altA) {
-        while (altA.length() == 0) {
-            System.out.println("Alternativa não pode ser vazia!");
-        }
         this.altA = altA;
     }
 
@@ -51,9 +42,6 @@ public class Questoes implements Serializable{
     }
 
     public void setAltB(String altB) {
-        while (altB.length() == 0) {
-            System.out.println("Alternativa não pode ser vazia!");
-        }
         this.altB = altB;
     }
 
@@ -62,9 +50,6 @@ public class Questoes implements Serializable{
     }
 
     public void setAltC(String altC) {
-        while (altC.length() == 0) {
-            System.out.println("Alternativa não pode ser vazia!");
-        }
         this.altC = altC;
     }
 
@@ -73,9 +58,6 @@ public class Questoes implements Serializable{
     }
 
     public void setAltD(String altD) {
-        while (altD.length() == 0) {
-            System.out.println("Alternativa não pode ser vazia!");
-        }
         this.altD = altD;
     }
 
@@ -84,22 +66,15 @@ public class Questoes implements Serializable{
     }
 
     public void setAltE(String altE) {
-        while (altE.length() == 0) {
-            System.out.println("Alternativa não pode ser vazia!");
-        }
         this.altE = altE;
-    }    
-    
+    }
+
     public String getResposta() {
         return resposta;
     }
 
     public void setResposta(String resposta) {
-//        if (!resposta.equals("a") && !resposta.equals("b") && !resposta.equals("c") && (!resposta.equals("d")) && !resposta.equals("e")) {
-//            System.out.println("Resposta inválida, digite novamente!");
-//        }
         this.resposta = resposta;
     }
-
 
 }
