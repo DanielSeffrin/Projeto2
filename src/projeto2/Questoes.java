@@ -11,7 +11,6 @@ public class Questoes implements Serializable {
     private String altC;
     private String altD;
     private String altE;
-    private String resposta;
 
     public int getNumero() {
         return numero;
@@ -67,14 +66,6 @@ public class Questoes implements Serializable {
 
     public void setAltE(String altE) {
         this.altE = altE;
-    }
-
-    public String getResposta() {
-        return resposta;
-    }
-
-    public void setResposta(String resposta) {
-        this.resposta = resposta;
     }
 
 }

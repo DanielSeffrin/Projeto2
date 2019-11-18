@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class Pesquisa implements Serializable {
 
     public static ArrayList<Questoes> pesquisa = new ArrayList<>();
+    public static ArrayList<Respostas> lista = new ArrayList<>();
     public static Scanner scanner = new Scanner(System.in);
+    public static int qtdEnt;
 
     public static void menu() {
         Scanner leitorTeclado = new Scanner(System.in);
@@ -19,7 +21,7 @@ public class Pesquisa implements Serializable {
         System.out.println("3 - Apagar Perguntas");
         System.out.println("4 - Listar Peguntas");
         System.out.println("5 - Iniciar Pesquisa");
-        System.out.println("/*6 - Percentual de Resposta*/");
+        System.out.println("/*6 - Percentual das Respostas*/");
         System.out.println("sair - Sair do Sistema");
         System.out.println("==============================");
         System.out.print("Digite a opção: ");
@@ -157,21 +159,22 @@ public class Pesquisa implements Serializable {
     }
 
     public static void lerResposta() {
-        Questoes q = new Questoes();
+        Respostas r = new Respostas();
         System.out.print("Digite a resposta: ");
         String resp = scanner.nextLine();
         while (!resp.equals("a") && !resp.equals("b") && !resp.equals("c") && (!resp.equals("d")) && !resp.equals("e")) {
             System.out.print("Resposta inválida, digite novamente: ");
             resp = scanner.nextLine();
         }
-        q.setResposta(resp);
+        r.setResposta(resp);
+        Pesquisa.lista.add(r);
         System.out.println("");
     }
 
     public static void iniciarPesquisa() {
         System.out.println("");
         System.out.print("Digite o número de entrevistados: ");
-        int qtdEnt = scanner.nextInt();
+        qtdEnt = scanner.nextInt();
         scanner.nextLine();
         while (qtdEnt <= 0) {
             System.out.print("Quantidade inválida, digite novamente: ");
@@ -182,12 +185,16 @@ public class Pesquisa implements Serializable {
         System.out.println("Pesquisa");
         System.out.println("");
         //
-        for (int x = 1; x <= qtdEnt; x++) {
-            System.out.print("Digite o nome do entrevistado " + x + ": ");
+        for (int x = 0; x < qtdEnt; x++) {
+            Respostas r = new Respostas();
+            System.out.print("Digite o nome do Entrevistado: ");
             String nome = scanner.nextLine();
+            r.setNome(nome);
+            Pesquisa.lista.add(r);
+            System.out.println("");
+            System.out.println("Entrevistado " + r.getNome());
             System.out.println("");
             for (int i = 0; i < pesquisa.size(); i++) {
-                System.out.println("Entrevistado " + nome);
                 System.out.println("Questão número: " + Pesquisa.pesquisa.get(i).getNumero());
                 System.out.println("Descrição: " + Pesquisa.pesquisa.get(i).getDescricao());
                 System.out.println("A: " + Pesquisa.pesquisa.get(i).getAltA());
