@@ -22,6 +22,7 @@ public class Pesquisa implements Serializable {
         System.out.println("4 - Listar Peguntas");
         System.out.println("5 - Iniciar Pesquisa");
         System.out.println("/*6 - Percentual das Respostas*/");
+        System.out.println("/*7 - Histórico das Respostas*/");
         System.out.println("sair - Sair do Sistema");
         System.out.println("==============================");
         System.out.print("Digite a opção: ");
@@ -50,6 +51,9 @@ public class Pesquisa implements Serializable {
                 case "6":
                     percRespostas();
                     break;
+                case "7":
+                    listarRespostas();
+                    break;
                 default:
                     System.out.print("Digite uma opção válida: ");
                     break;
@@ -66,9 +70,7 @@ public class Pesquisa implements Serializable {
 
     public static void cadastrarPerguntas() {
         Questoes q = new Questoes();
-        System.out.println("");
-        System.out.println("Cadastramento de Perguntas");
-        System.out.println("");
+        System.out.println("\nCadastrar Perguntas\n");
         System.out.print("Digite o número da questão: ");
         int n = scanner.nextInt();
         scanner.nextLine();
@@ -87,20 +89,15 @@ public class Pesquisa implements Serializable {
         q.setAltC("Regular");
         q.setAltD("Bom");
         q.setAltE("Ótimo");
-        //
         Pesquisa.pesquisa.add(q);
-        //
         System.out.println("Cadastrado com sucesso!");
         System.out.println("");
-        //
         menu();
     }
 
     public static void alterarPerguntas() {
         Questoes q = new Questoes();
-        System.out.println("");
-        System.out.println("Alterar Perguntas");
-        System.out.println("");
+        System.out.println("\nAlterar Perguntas\n");
         System.out.print("Digite o número da questão para alterar: ");
         int num = scanner.nextInt();
         scanner.nextLine();
@@ -116,14 +113,11 @@ public class Pesquisa implements Serializable {
         }
         System.out.println("Questão inválida");
         System.out.println("");
-        //
         menu();
     }
 
     public static void apagarPerguntas() {
-        System.out.println("");
-        System.out.println("Apagar Perguntas");
-        System.out.println("");
+        System.out.println("\nApagar Perguntas\n");
         System.out.print("Digite o número da questão para apagar: ");
         int num = scanner.nextInt();
         scanner.nextLine();
@@ -135,16 +129,12 @@ public class Pesquisa implements Serializable {
                 menu();
             }
         }
-        System.out.println("Questão inválida!");
-        System.out.println("");
-        //
+        System.out.println("Questão inválida!\n");
         menu();
     }
 
     public static void listarPerguntas() {
-        System.out.println("");
-        System.out.println("Listagem das Perguntas");
-        System.out.println("");
+        System.out.println("\nListagem das Perguntas\n");
         for (int i = 0; i < pesquisa.size(); i++) {
             System.out.println("Questão número: " + Pesquisa.pesquisa.get(i).getNumero());
             System.out.println("Descrição: " + Pesquisa.pesquisa.get(i).getDescricao());
@@ -158,22 +148,8 @@ public class Pesquisa implements Serializable {
         menu();
     }
 
-    public static void lerResposta() {
-        Respostas r = new Respostas();
-        System.out.print("Digite a resposta: ");
-        String resp = scanner.nextLine();
-        while (!resp.equals("a") && !resp.equals("b") && !resp.equals("c") && (!resp.equals("d")) && !resp.equals("e")) {
-            System.out.print("Resposta inválida, digite novamente: ");
-            resp = scanner.nextLine();
-        }
-        r.setResposta(resp);
-        Pesquisa.lista.add(r);
-        System.out.println("");
-    }
-
     public static void iniciarPesquisa() {
-        System.out.println("");
-        System.out.print("Digite o número de entrevistados: ");
+        System.out.print("\nDigite o número de entrevistados: ");
         qtdEnt = scanner.nextInt();
         scanner.nextLine();
         while (qtdEnt <= 0) {
@@ -181,20 +157,14 @@ public class Pesquisa implements Serializable {
             qtdEnt = scanner.nextInt();
             scanner.nextLine();
         }
-        System.out.println("");
-        System.out.println("Pesquisa");
-        System.out.println("");
-        //
+        System.out.println("\nPesquisa\n");
         for (int x = 0; x < qtdEnt; x++) {
-            Respostas r = new Respostas();
-            System.out.print("Digite o nome do Entrevistado: ");
-            String nome = scanner.nextLine();
-            r.setNome(nome);
-            Pesquisa.lista.add(r);
-            System.out.println("");
-            System.out.println("Entrevistado " + r.getNome());
-            System.out.println("");
+            System.out.print("Digite o nome do entrevistado: ");
+            String nome = scanner.nextLine();                    
             for (int i = 0; i < pesquisa.size(); i++) {
+                Respostas r = new Respostas();
+                r.setNome(nome);
+                System.out.println("\nEntrevistado " + r.getNome() + "\n");
                 System.out.println("Questão número: " + Pesquisa.pesquisa.get(i).getNumero());
                 System.out.println("Descrição: " + Pesquisa.pesquisa.get(i).getDescricao());
                 System.out.println("A: " + Pesquisa.pesquisa.get(i).getAltA());
@@ -202,23 +172,39 @@ public class Pesquisa implements Serializable {
                 System.out.println("C: " + Pesquisa.pesquisa.get(i).getAltC());
                 System.out.println("D: " + Pesquisa.pesquisa.get(i).getAltD());
                 System.out.println("E: " + Pesquisa.pesquisa.get(i).getAltE());
-                System.out.println("");
-                lerResposta();
+                System.out.print("\nDigite a resposta: ");
+                String resp = scanner.nextLine();
+                while (!resp.equals("a") && !resp.equals("b") && !resp.equals("c") && (!resp.equals("d")) && !resp.equals("e")) {
+                    System.out.print("Resposta inválida, digite novamente: ");
+                    resp = scanner.nextLine();
+                }
+                r.setResposta(resp);
+                Pesquisa.lista.add(r);
             }
         }
         menu();
     }
 
     public static void percRespostas() {
-        System.out.println("Percentual das Respostas");
-        //
+        System.out.println("\nPercentual das Respostas\n");
+    }
+
+    public static void listarRespostas() {
+        System.out.println("\nLista das Respostas\n");
+        for (int i = 0; i < qtdEnt; i++) {
+            System.out.println("Entrevistado " + Pesquisa.lista.get(i).getNome()+ "\n");
+            for (int y = 0; y < lista.size(); y++) {
+                System.out.println("Resposta Questão " + Pesquisa.pesquisa.get(y).getNumero() + ": " + Pesquisa.lista.get(y).getResposta());
+            }
+            System.out.println("");
+        }
         menu();
     }
 
     public static void perguntasIniciais() {
         Questoes q = new Questoes();
         q.setNumero(1);
-        q.setDescricao("Q1");
+        q.setDescricao("Como você avalia a instituição em que estuda de modo geral?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -228,7 +214,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(2);
-        q.setDescricao("Q2");
+        q.setDescricao("Como você avalia a infraestrutura geral da instituição em que estuda?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -238,7 +224,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(3);
-        q.setDescricao("Q3");
+        q.setDescricao("Como você avalia o curso que estuda?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -248,7 +234,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(4);
-        q.setDescricao("Q4");
+        q.setDescricao("Como você avalia os conhecimentos teóricos do curso?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -258,7 +244,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(5);
-        q.setDescricao("Q5");
+        q.setDescricao("Como você avalia os conhecimentos práticos da sua área de formação?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -268,7 +254,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(6);
-        q.setDescricao("Q6");
+        q.setDescricao("Como você avalia a qualificação dos seus professores?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -278,7 +264,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(7);
-        q.setDescricao("Q7");
+        q.setDescricao("Qual é o conceito que você atribui ao curso que estuda?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -288,7 +274,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(8);
-        q.setDescricao("Q8");
+        q.setDescricao("Como você avalia o mercado de trabalho da sua área de formação?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -298,7 +284,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(9);
-        q.setDescricao("Q9");
+        q.setDescricao("Como você avalia as ofertas profissionais da sua área de formação?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");
@@ -308,7 +294,7 @@ public class Pesquisa implements Serializable {
         //
         q = new Questoes();
         q.setNumero(10);
-        q.setDescricao("Q10");
+        q.setDescricao("Como você avalia a remuneração dos profissionais da sua área de formação?");
         q.setAltA("Péssimo");
         q.setAltB("Ruim");
         q.setAltC("Regular");

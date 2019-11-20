@@ -1,8 +1,6 @@
 package projeto2;
 
-import java.io.Serializable;
-
-public class Questoes implements Serializable {
+public class Questoes {
 
     private int numero;
     private String descricao;
