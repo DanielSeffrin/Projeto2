@@ -4,6 +4,7 @@ public class Respostas {
 
     private String nome;
     private String resposta;
+    public Questoes q;
 
     public String getNome() {
         return nome;
