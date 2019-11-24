@@ -1,6 +1,8 @@
 package projeto2;
 
-public class Respostas {
+import java.io.Serializable;
+
+public class Respostas implements Serializable {
 
     private String nome;
     private String resposta;
