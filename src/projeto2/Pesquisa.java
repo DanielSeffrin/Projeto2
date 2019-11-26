@@ -27,16 +27,16 @@ public class Pesquisa implements Serializable {
         Pesquisa p = new Pesquisa();
 
         p.perguntasIniciais();
-
+        
         File arquivo_questoes = new File(p.nomeArquivoQuestoes);
         File arquivo_respostas = new File(p.nomeArquivoRespostas);
 
         if (arquivo_questoes.exists()) {
             try {
                 FileInputStream arq_questoes = new FileInputStream(p.nomeArquivoQuestoes);
-                ObjectInputStream objetoEntradaR = new ObjectInputStream(arq_questoes);
-                p.pesquisa = (ArrayList<Questoes>) objetoEntradaR.readObject();
-                objetoEntradaR.close();
+                ObjectInputStream objetoEntradaQ = new ObjectInputStream(arq_questoes);
+                p.pesquisa = (ArrayList<Questoes>) objetoEntradaQ.readObject();
+                objetoEntradaQ.close();
                 arq_questoes.close();
                 p.menu();
 
@@ -50,9 +50,9 @@ public class Pesquisa implements Serializable {
         if (arquivo_respostas.exists()) {
             try {
                 FileInputStream arq_respostas = new FileInputStream(p.nomeArquivoRespostas);
-                ObjectInputStream objetoEntradaQ = new ObjectInputStream(arq_respostas);
-                p.lista = (ArrayList<Respostas>) objetoEntradaQ.readObject();
-                objetoEntradaQ.close();
+                ObjectInputStream objetoEntradaR = new ObjectInputStream(arq_respostas);
+                p.lista = (ArrayList<Respostas>) objetoEntradaR.readObject();
+                objetoEntradaR.close();
                 arq_respostas.close();
                 p.menu();
 
