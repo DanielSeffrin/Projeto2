@@ -1,7 +1,9 @@
 package projeto2;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,20 +19,43 @@ public class Pesquisa implements Serializable {
     public Scanner scanner = new Scanner(System.in);
     // Variável para armazenar o número de entrevistados
     public int qtdEnt;
-    // Seta o nome do arquivo
-    public String nomeArquivo = "questoes_respostas.bin";
+    // Seta o nome dos arquivos
+    public String nomeArquivoQuestoes = "questoes.bin";
+    public String nomeArquivoRespostas = "respostas.bin";
 
     public static void main(String[] args) {
         Pesquisa p = new Pesquisa();
 
         p.perguntasIniciais();
 
-        File arquivo = new File(p.nomeArquivo);
+        File arquivo_questoes = new File(p.nomeArquivoQuestoes);
+        File arquivo_respostas = new File(p.nomeArquivoRespostas);
 
-        if (arquivo.exists()) {
+        if (arquivo_questoes.exists()) {
             try {
-                arquivo.delete();
+                FileInputStream arq_questoes = new FileInputStream(p.nomeArquivoQuestoes);
+                ObjectInputStream objetoEntradaR = new ObjectInputStream(arq_questoes);
+                p.pesquisa = (ArrayList<Questoes>) objetoEntradaR.readObject();
+                objetoEntradaR.close();
+                arq_questoes.close();
                 p.menu();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            p.menu();
+        }
+
+        if (arquivo_respostas.exists()) {
+            try {
+                FileInputStream arq_respostas = new FileInputStream(p.nomeArquivoRespostas);
+                ObjectInputStream objetoEntradaQ = new ObjectInputStream(arq_respostas);
+                p.lista = (ArrayList<Respostas>) objetoEntradaQ.readObject();
+                objetoEntradaQ.close();
+                arq_respostas.close();
+                p.menu();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -313,16 +338,23 @@ public class Pesquisa implements Serializable {
     }
 
     public void gravarArquivo() {
+        Pesquisa p = new Pesquisa();
         try {
-            FileOutputStream arquivoSaida = new FileOutputStream(nomeArquivo);
-            ObjectOutputStream objetoSaida = new ObjectOutputStream(arquivoSaida);
-            objetoSaida.writeObject(pesquisa);
-            objetoSaida.writeObject(lista);
-            objetoSaida.close();
-            arquivoSaida.close();
+            FileOutputStream arquivoSaidaQuest = new FileOutputStream(p.nomeArquivoQuestoes);
+            ObjectOutputStream objetoSaidaQ = new ObjectOutputStream(arquivoSaidaQuest);
+            objetoSaidaQ.writeObject(pesquisa);
+            objetoSaidaQ.close();
+            arquivoSaidaQuest.close();
+            //
+            FileOutputStream arquivoSaidaResp = new FileOutputStream(p.nomeArquivoRespostas);
+            ObjectOutputStream objetoSaidaR = new ObjectOutputStream(arquivoSaidaResp);
+            objetoSaidaR.writeObject(lista);
+            objetoSaidaR.close();
+            arquivoSaidaResp.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 }
